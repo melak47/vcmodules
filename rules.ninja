@@ -1,0 +1,36 @@
+rule module_interface
+    command = cl /c $in /module:output $out /Fo:$obj /Fd:$pdb /nologo /showIncludes $flags /Zi $includes $modules $stdlib_module_mapping $winsdk_module_mapping
+    description = Module $in
+    deps = msvc
+
+rule compile
+    command = cl /c $in /Fo:$out /Fd:$pdb /nologo /showIncludes $flags /Zi $includes $modules $stdlib_module_mapping $winsdk_module_mapping
+    description = Compile $in
+    deps = msvc
+
+rule link
+    command = cl $in $systemlibs /Fe:$out /nologo /link /debug /pdb:$pdb /incremental /debug:fastlink $linkflags
+    description = Link $out
+
+rule lib
+    command = lib /out:$out /nologo $in
+    description = Link $out
+
+rule configure
+    command = python $in
+    description = Configure ${out}
+
+rule import_scan
+    command = sms $in --key $key --module_dir build/ifc --dyndep $out
+    description = Scan imports ${in}
+
+rule synthesize
+    command = cl /module:exportHeader "<$header>" /module:output $out /Fo:$obj /nologo $flags $includes
+    description = Synthesize header unit <$header>
+    deps = msvc
+
+modules = /module:search build/ifc
+warnings = /W4 /wd4005
+flags = /experimental:module /std:c++latest /EHsc /MDd $warnings /diagnostics:caret /permissive- /utf-8
+systemlibs = kernel32.lib Onecore.lib d3d11.lib
+includes = /I.
