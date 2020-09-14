@@ -1,6 +1,8 @@
-export module utl.meta;
+module;
 
-import <type_traits>;
+#include <type_traits>
+
+export module utl.meta;
 
 export namespace utl {
 

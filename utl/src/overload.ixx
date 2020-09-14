@@ -1,6 +1,8 @@
-export module utl.overload;
+module;
 
-import <utility>;
+#include <utility>
+
+export module utl.overload;
 
 namespace utl {
     template<typename... F>

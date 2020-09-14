@@ -1,7 +1,9 @@
-export module windows.hresult;
+module;
 
-import <string>;
-import <system_error>;
+#include <string>
+#include <system_error>
+
+export module windows.hresult;
 
 export using HRESULT = long;
 export namespace windows {

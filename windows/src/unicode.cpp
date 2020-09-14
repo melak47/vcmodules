@@ -1,14 +1,15 @@
 module;
 
+#include <cstdint>
+#include <string_view>
+#include <stdexcept>
+
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 module windows.unicode;
 
-import <cstdint>;
-import <string_view>;
-import <stdexcept>;
 import windows.error;
 
 namespace windows {

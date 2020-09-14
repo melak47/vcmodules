@@ -1,12 +1,12 @@
 module;
 
+#include <stdexcept>
+#include <type_traits>
+#include <utility>
+
 #include <Unknwn.h>
 
 export module windows.com_ptr;
-
-import <type_traits>;
-import <utility>;
-import <stdexcept>;
 
 import windows.hresult;
 

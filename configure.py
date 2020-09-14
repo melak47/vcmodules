@@ -89,24 +89,6 @@ def synthesize(header):
     ninja.write('\n')
     return str(obj)
 
-def map_stdlib_header(header):
-    PREFIX = escape_path('C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/include')
-    # PREFIX = escape_path('C:/Program Files (x86)/Microsoft Visual Studio/2019/Preview/VC/Tools/MSVC/14.28.29213/include')
-    return f'/headerUnit "{PREFIX}/{header}=build/ifc/{header}.ifc"'
-
-def stdlib_modules(*headers):
-    objects = [synthesize(header) for header in headers]
-    refs = [map_stdlib_header(header) for header in headers]
-
-    objects = ' '.join(objects)
-    module_refs = ' '.join(refs)
-
-    lib = 'build/stdlib.lib'
-    ninja.write(f'\nbuild {lib}: lib {objects}\n\n')
-    ninja.write(f'stdlib_module_mapping = {module_refs}\n\n')
-    ninja.write(f'build synthesized_headers: phony {lib}\n\n')
-    return lib
-
 #endregion boilerplate
 
 ninja.write('builddir = build\n\n')
@@ -115,38 +97,10 @@ ninja.write('include rules.ninja\n\n')
 ninja.write('build build.ninja: configure configure.py\n')
 ninja.write('    generator = 1\n\n')
 
-# generate modules for stdlib headers manually
-std = stdlib_modules(
-    # C stdlib
-    'cassert', 'cctype', 'cerrno', 'cfenv', 'cfloat', 'charconv',
-    'cinttypes', 'climits', 'clocale', 'cmath', 'csetjmp', 'cstdarg',
-    'cstddef', 'cstdint', 'cstdio', 'cstdlib', 'cstring', 'ctime',
-    'cuchar', 'cwchar', 'cwctype',
-    # C++ stdlib
-    'algorithm', 'any', 'array', 'atomic',
-    'bit', 'bitset',
-    'chrono', 'codecvt', 'compare', 'complex', 'concepts', 'condition_variable',
-    'deque',
-    'exception', 'execution',
-    'filesystem', 'forward_list', 'fstream', 'functional', 'future',
-    'initializer_list', 'iomanip', 'ios', 'iosfwd', 'iostream', 'istream', 'iterator',
-    'limits', 'list', 'locale',
-    'map', 'memory', 'memory_resource', 'mutex',
-    'new', 'numbers', 'numeric',
-    'optional', 'ostream',
-    'queue',
-    'random', 'ranges', 'ratio', 'regex',
-    'scoped_allocator', 'set', 'shared_mutex', 'span', 'sstream', 'stack',
-    'stdexcept', 'streambuf', 'string', 'string_view', 'system_error',
-    'thread', 'tuple', 'type_traits', 'typeindex', 'typeinfo',
-    'unordered_map', 'unordered_set', 'utility',
-    'valarray', 'variant', 'vector', 'version'
-)
 utl = lib('utl')
 windows = lib('windows')
 
 exe('example', 'src', libs=[
-    std,
     utl,
     windows,
 ])

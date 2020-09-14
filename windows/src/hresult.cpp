@@ -1,14 +1,15 @@
 ﻿module;
 
+#include <memory>
+#include <string>
+#include <system_error>
+#include <vector>
+
 #include <Unknwn.h>
 #include <OleAuto.h>
 
 module windows.hresult;
 
-import <memory>;
-import <vector>;
-import <string>;
-import <system_error>;
 import utl.memory;
 import windows.com_ptr;
 import windows.unicode;

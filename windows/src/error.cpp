@@ -1,14 +1,13 @@
-﻿module;
+module;
+
+#include <cstdint>
+#include <system_error>
 
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 module windows.error;
-
-import <cstdint>;
-import <system_error>;
-
 
 namespace windows {
 

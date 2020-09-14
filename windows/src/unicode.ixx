@@ -1,7 +1,9 @@
-export module windows.unicode;
+module;
 
-import <string>;
-import <string_view>;
+#include <string>
+#include <string_view>
+
+export module windows.unicode;
 
 export namespace windows {
     auto utf16(std::string_view utf_8) -> std::wstring;

@@ -1,6 +1,8 @@
-export module utl.bitflag;
+module;
 
-import <type_traits>;
+#include <type_traits>
+
+export module utl.bitflag;
 
 export namespace utl {
 

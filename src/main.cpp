@@ -9,12 +9,12 @@ import utl.memory;
 import utl.meta;
 import utl.overload;
 
-import <algorithm>;
-import <iostream>;
-import <string>;
-import <string_view>;
-import <variant>;
-import <vector>;
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <variant>
+#include <vector>
 
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN

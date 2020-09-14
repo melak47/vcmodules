@@ -1,6 +1,8 @@
-export module utl.enumerate;
+module;
 
-import <iterator>;
+#include <iterator>
+
+export module utl.enumerate;
 
 namespace utl {
 

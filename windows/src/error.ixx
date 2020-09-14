@@ -1,6 +1,8 @@
-export module windows.error;
+module;
 
-import <system_error>;
+#include <system_error>
+
+export module windows.error;
 
 export namespace windows {
     auto last_error()                 -> std::system_error;

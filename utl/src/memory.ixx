@@ -1,7 +1,9 @@
+module;
+
+#include <memory>
+#include <type_traits>
+
 export module utl.memory;
-
-import <memory>;
-
 
 namespace utl {
 
